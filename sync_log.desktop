@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.1.0
+Type=Application
+Name=Phase sync testing with reboots
+Comment=Phase sync testing with reboots
+Exec=sudo xfce4-terminal --hold -x /home/analog/adrv9009_fm8_multi_sync_test_bash/auto_log.sh
+OnlyShowIn=XFCE;LXDE
+StartupNotify=false
+Terminal=false
+Hidden=false
+

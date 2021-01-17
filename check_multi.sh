@@ -61,7 +61,10 @@ function dds_on {
 
 function resync {
         # restart HMC7044 dividers (only used for test)			#
-        iio_reg -u ip:$IIOD_MASTER hmc7044 0x1 0x61 || return 1   	#
+        #pause FSM before resetting clock chips
+	iio_jesd204_fsm_sync -p -d adrv9009-phy -u ip:$IIOD_MASTER ip:$IIOD_SLAVE || return 1
+        sleep 0.1
+	iio_reg -u ip:$IIOD_MASTER hmc7044 0x1 0x61 || return 1   	#
         iio_reg -u ip:$IIOD_MASTER hmc7044-fmc 0x1 0x61	|| return 1	#
         iio_reg -u ip:$IIOD_MASTER hmc7044-car 0x1 0x01	|| return 1	#
         iio_reg -u ip:$IIOD_MASTER hmc7044-ext 0x1 0x01	|| return 1	#
